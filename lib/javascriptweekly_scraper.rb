@@ -9,7 +9,8 @@ class JavascriptWeeklyScraper
   end
 
   def scrape
-
+    scrape_details
+    scrape_articles
     @newsletter
   end
 
@@ -23,6 +24,7 @@ class JavascriptWeeklyScraper
       a.author = article_table.search("div:first").text.strip
       a.title = article_table.search("a:first").text.strip
       a.url = article_table.search("a:first").attr("href").text.strip
+
       @newsletter.add_article(a)
     end
   end
