@@ -1,6 +1,5 @@
 class JavascriptWeeklyScraper
-  attr_accessor :newsletter
-  attr_reader :doc
+  attr_accessor :newsletter, :doc
 
   def initialize(issue_number)
     @newsletter = Newsletter.new
@@ -19,9 +18,9 @@ class JavascriptWeeklyScraper
   end
 
   def scrape_articles
-    @doc.search("td[align='left'] table.gowide")[2..-1].each do |article_table|
+    @doc.search("td[align='left'] div")[1..-1].each do |article_table|
       a = Article.new
-      a.author = article_table.search("div:first").text.strip
+      a.author = article_table.search("div:last").text.strip
       a.title = article_table.search("a:first").text.strip
       a.url = article_table.search("a:first").attr("href").text.strip
 
