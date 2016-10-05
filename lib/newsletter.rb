@@ -4,7 +4,6 @@ class Newsletter
   attr_accessor :issue_number, :issue_date
   attr_reader :articles
 
-  @@articles = []
   def initialize
     @articles = []
   end
@@ -17,7 +16,7 @@ class Newsletter
     if !article.is_a?(Article)
       raise InvalidType, "must be an Article"
     else
-      @@articles << article
+      @articles << article
     end
   end
 
